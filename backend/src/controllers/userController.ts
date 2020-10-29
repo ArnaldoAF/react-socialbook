@@ -43,8 +43,25 @@ export default class UserController {
             const {
                 id
             } = request.params;
-    
-            const selectedUser = await db('users').where({id: id});
+            /*
+            const selectedUser = await db('users')
+                                        .where('users.id','=',id)
+                                        .join('posts', 'posts.user_id','=','users.id')
+                                        .select(['users.*', 'posts.message'])
+                */
+            var countPosts = await db('posts').count('* as posts')
+                                .where({user_id: id});
+                                console.log(countPosts);
+
+            var countComments = await db('comments').count('* as comments')
+                                    .where({user_id: id});
+
+            const selectedUser = await db('users')
+                                        .where('users.id','=',id)
+                                        .select('*')
+                                        .select(countPosts)
+                                        .select(countComments);
+
 
             if(!selectedUser || selectedUser.length == 0) {
                 console.log("⚠️  ERRO - Usuário não encontrado - id: "+id);
