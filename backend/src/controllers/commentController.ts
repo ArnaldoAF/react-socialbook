@@ -84,15 +84,25 @@ export default class PostController {
                     "message":"Post não encontrado"
                 })
             }
-            
-            
-    
+
+            Promise.all(comments.map(async (comment:any) => {
+                const post = await db('posts').where('id','=',comment.post_id);
+                const user = await db('users').where('id','=',comment.user_id);
+
+                return {
+                    ...comment,
+                    post:post[0],
+                    user:user[0]
+                }
+            })).then(commentList => {
+                console.log("✅ Prommise Completa");
+                
+                return response.status(200).json({
+                    "message":"Recuperado com sucesso",
+                    "data": commentList
+                })
+            });
             console.log("✅ Sucesso - "+[comments]);
-    
-            return response.status(201).json({
-                "message":"Recuperado com sucesso",
-                "data": comments
-            })
 
         }catch(err) {
             console.log("⚠️ ERRO");
