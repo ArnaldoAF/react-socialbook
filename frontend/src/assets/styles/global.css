@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    height: 100vh;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+body,
+input,
+button,
+textarea {
+    font: 300 1.6rem Roboto;
+    color: var(--color-text-base)
+}
+
+#root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 90vw;
+    max-width: 700px;
+}
