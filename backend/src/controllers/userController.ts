@@ -4,6 +4,7 @@ import db from '../database/connections';
 
 export default class UserController {
     async create(request: Request, response:Response) {
+
         console.log('------------------------------');
         console.log('👤 UserController - create');
 
@@ -30,6 +31,7 @@ export default class UserController {
             console.log(err);
             return response.status(400).json({
                 error: "error while creating a new User",
+                message: (err.code ==="SQLITE_CONSTRAINT" && "Usuário já existe"),
                 detail: err
             });
         }
@@ -43,12 +45,7 @@ export default class UserController {
             const {
                 id
             } = request.params;
-            /*
-            const selectedUser = await db('users')
-                                        .where('users.id','=',id)
-                                        .join('posts', 'posts.user_id','=','users.id')
-                                        .select(['users.*', 'posts.message'])
-                */
+            
             var countPosts = await db('posts').count('* as posts')
                                 .where({user_id: id});
                                 console.log(countPosts);
@@ -80,8 +77,11 @@ export default class UserController {
         }catch(err) {
             console.log("⚠️ ERRO");
             console.log(err);
+            console.log(err.code);
+            
             return response.status(400).json({
                 error: "error while recovering User",
+                
                 detail: err
             });
         }
@@ -120,6 +120,45 @@ export default class UserController {
             console.log(err);
             return response.status(400).json({
                 error: "error while updating User",
+                detail: err
+            });
+        }
+    }
+
+    async login(request: Request, response:Response) {
+        console.log('------------------------------');
+        console.log('👤 UserController - login');
+
+        try {
+            const filters = request.query;
+            
+            const username = filters.username as string;
+            
+
+            const selectedUser = await db('users')
+                                        .where('users.name','like',`${username}`)
+                                        .select('id');
+
+
+            if(!selectedUser || selectedUser.length == 0) {
+                console.log("⚠️  ERRO - Usuário não encontrado - name: "+username);
+                return response.status(404).json({
+                    "message":"Usuario não encontrado"
+                })
+            }
+    
+            console.log("✅ Sucesso ",{selectedUser});
+    
+            return response.status(201).json({
+                "message":"Recuperado com sucesso",
+                "data": selectedUser[0].id
+            })
+
+        }catch(err) {
+            console.log("⚠️ ERRO");
+            console.log(err);
+            return response.status(400).json({
+                error: "error while recovering User",
                 detail: err
             });
         }

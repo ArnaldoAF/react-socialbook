@@ -15,6 +15,7 @@ routes.get("/test", (request, response) => {
     return response.json({"test": "ok"})
 });
 
+routes.get("/login", userController.login);
 routes.post("/user", userController.create);
 routes.put("/user", userController.update);
 routes.get("/user/:id", userController.select);

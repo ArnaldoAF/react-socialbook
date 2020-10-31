@@ -52,6 +52,7 @@
         flex-direction: column;
         justify-content: center;
         height: 60vh;
+        max-width: 24rem;
     }
     #login-area {
         border-radius: 0.8rem 0 0 0.8rem;
