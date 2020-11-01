@@ -1,0 +1,12 @@
+.menu {
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4rem;
+    margin-top: 0.5rem;
+}
+
+.menu img {
+    width: 3rem;
+}
