@@ -82,7 +82,7 @@ export default class PostController {
 
                 return {
                     ...post,
-                    comments:commentsCount[0],
+                    comments:commentsCount[0].total,
                     user:user[0]
                 }
             })).then((postList) => {

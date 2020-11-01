@@ -5,6 +5,8 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 
 import { isAutheticated } from './services/auth';
+import Header from './components/Header';
+import Profile from './pages/Profile';
 
 interface RoutePropsCustom extends RouteProps {
     // tslint:disable-next-line:no-any
@@ -17,6 +19,7 @@ const PrivateRoute = (props:RoutePropsCustom) => {
 
     return (
         <>
+        <Header />
         <Route 
             {...rest}
             render = { routerProps => 
@@ -59,6 +62,7 @@ function Router() {
             <Switch>
                 <PublicRoute path="/" component={Login} exact/>
                 <PrivateRoute path="/home" component={Home} />
+                <PrivateRoute path="/profile/:id" component={Profile} />
                 <Route path="*" component={() => <h1>Page not found</h1>} />
             </Switch>
             

@@ -71,7 +71,7 @@ export default class UserController {
     
             return response.status(201).json({
                 "message":"Recuperado com sucesso",
-                "data": selectedUser
+                "data": selectedUser[0]
             })
 
         }catch(err) {
