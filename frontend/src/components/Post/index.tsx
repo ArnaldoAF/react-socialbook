@@ -13,11 +13,12 @@ const Post:React.FC<PostProps> = (props) => {
         post
     } = props;
 
+    const timezone = new Date().getTimezoneOffset()/60;
     const date = new Date(Date.parse(post.created_at));
-    const day = date.getDay();
-    const month = date.getMonth();
-    const hour = date.getHours();
-    const minutes = date.getMinutes();
+    const day = date.getDay()+1;
+    const month = date.getMonth()+1;
+    const hour = date.getHours() - timezone;
+    const minutes = date.getMinutes() - timezone;
 
     return (
         

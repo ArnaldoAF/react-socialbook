@@ -32,6 +32,8 @@ textarea {
     width: 100vw;
     max-width: 800px;
     align-self: center;
+    padding: 0 1rem;
+    overflow-y: auto;
 }
 
 .App {
@@ -39,4 +41,5 @@ textarea {
     width: 100vw;
     display: flex;
     flex-direction: column;
+    overflow-y: hidden;
 }

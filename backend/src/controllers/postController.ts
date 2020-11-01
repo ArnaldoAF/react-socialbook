@@ -63,7 +63,8 @@ export default class PostController {
                                     if (user_id) queryBuilder.where({user_id:user_id})
                                     if (message_text) queryBuilder.where('message', 'like', `%${message_text}%`)
                                 })
-                                .select('*');
+                                .select('*')
+                                .orderBy('id','desc');
             
 
             if(id && !posts.length) {

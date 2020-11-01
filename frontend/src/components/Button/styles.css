@@ -30,3 +30,8 @@
     transition: background-color 0.2s;
     margin-top: 3.2rem;
 }
+
+.button img {
+    width: 2rem;
+    margin-left: 1rem;
+}
