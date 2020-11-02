@@ -1,0 +1,12 @@
+.post-comment-area .input-block {
+    width: 90vw;
+}
+
+.post-comment-area .button {
+    width: 20vw;
+    margin-top: 0.5rem;
+}
+
+.post-comment-area .button img {
+    margin-left: 0;
+}

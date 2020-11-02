@@ -15,7 +15,7 @@ const CommentBlock:React.FC<PostProps> = (props) => {
     } = props;
 
     const timezone = new Date().getTimezoneOffset()/60;
-    const date = new Date(Date.parse(comment.created_at)).set;
+    const date = new Date(Date.parse(comment.created_at));
     const day = date.getDay()+1;
     const month = date.getMonth()+1;
     const hour = date.getHours() - timezone;

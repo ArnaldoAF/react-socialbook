@@ -10,6 +10,7 @@ import Profile from './pages/Profile';
 import Menu from './components/Menu';
 import Create from './pages/Create';
 import Post from './pages/Post';
+import Search from './pages/Search';
 
 interface RoutePropsCustom extends RouteProps {
     // tslint:disable-next-line:no-any
@@ -69,6 +70,7 @@ function Router() {
                 <PrivateRoute path="/profile/:id" component={Profile} />
                 <PrivateRoute path="/create" component={Create} />
                 <PrivateRoute path="/post/:id" component={Post} />
+                <PrivateRoute path="/search" component={Search} />
                 <PrivateRoute path="*" component={() => <h1>Page not found</h1>} />
             </Switch>
             
