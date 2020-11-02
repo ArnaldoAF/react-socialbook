@@ -10,7 +10,6 @@
     justify-content: center;
     text-decoration: none;
     transition: background-color 0.2s;
-    margin-top: 3.2rem;
 }
 
 .button:hover {
@@ -28,7 +27,6 @@
     justify-content: center;
     text-decoration: none;
     transition: background-color 0.2s;
-    margin-top: 3.2rem;
 }
 
 .button img {

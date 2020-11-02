@@ -6,7 +6,7 @@ import api from '../../services/api';
 import './styles.css';
 
 interface ProfileParam {
-    id: string;
+    id: string; 
 }
 
 const Profile: React.FC<RouteComponentProps<ProfileParam>> = (props) => {

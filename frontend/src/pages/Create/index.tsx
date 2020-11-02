@@ -2,7 +2,7 @@ import React, { FormEvent, useEffect, useState } from 'react';
 import {useHistory} from 'react-router-dom';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
-import Post from '../../components/Post';
+import PostBlock from '../../components/PostBlock';
 import TextArea from '../../components/TextArea';
 import PostInterface from '../../interfaces/PostInterface';
 import UserInterface from '../../interfaces/UserInterface';

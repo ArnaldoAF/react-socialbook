@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {useHistory} from 'react-router-dom';
-import Post from '../../components/Post';
+import PostBlock from '../../components/PostBlock';
 import PostInterface from '../../interfaces/PostInterface';
 import UserInterface from '../../interfaces/UserInterface';
 import api from '../../services/api';
@@ -32,7 +32,7 @@ const Login:React.FC = () => {
         <div className="container">
             
             {postList?.map((post:PostInterface) => {
-                return <Post post={post}/>
+                return <PostBlock post={post}/>
                 
             })}
         </div>

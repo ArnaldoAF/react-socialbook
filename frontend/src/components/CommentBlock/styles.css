@@ -1,0 +1,42 @@
+.comment-area {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 0.8rem;
+    margin: 0.5rem 1.5rem;
+}
+
+.comment-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+}
+
+.comment-footer {
+    font-size: 1.2rem;
+    display: flex;
+    margin-top: 0.5rem;
+}
+
+.comment-footer img {
+    max-width: 1.5rem;
+}
+
+.comment-header img {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+    border-radius: 50px;
+    border: 1px solid black;
+}
+
+.comment-header>p {
+    display: flex;
+}
+
+.comment-body {
+    font-size: 1.2rem;
+}
