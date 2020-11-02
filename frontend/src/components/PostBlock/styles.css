@@ -36,3 +36,9 @@
 .post-header>p {
     display: flex;
 }
+
+.trash {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    border: 0 !important;
+}

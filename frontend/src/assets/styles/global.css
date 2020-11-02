@@ -49,3 +49,7 @@ a {
     color: black;
     text-decoration: none;
 }
+
+.invisible {
+    display:none;
+}
