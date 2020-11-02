@@ -6,6 +6,9 @@ import commentIcons from '../../assets/images/icons/message-square.svg';
 import { Link } from 'react-router-dom';
 import getDateTime from '../../helpers/getDateTime';
 
+
+import getProfileUrl from '../../helpers/getProfileUrl';
+
 interface PostProps {
     comment:CommentInterface
 }   
@@ -23,7 +26,7 @@ const CommentBlock:React.FC<PostProps> = (props) => {
             <div className="comment-area">
                 <div className="comment-header">
                     <Link to={`/profile/${comment.user?.id}`}  >
-                        <p><img src={("http://lorempixel.com/400/200/sports/"+comment.user?.id)} alt=""/> {comment.user?.name}</p>
+                        <p><img src={(getProfileUrl(comment.user?.id || 0))} alt=""/> {comment.user?.name}</p>
                     </Link>
                     <p>{hour}:{minutes} {day}/{month}  </p>
 

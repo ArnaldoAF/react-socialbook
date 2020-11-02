@@ -9,6 +9,9 @@ import { useHistory, Link } from 'react-router-dom';
 import { Power } from 'react-feather';
 import powerIcon from '../../assets/images/icons/power.svg';
 
+
+import getProfileUrl from '../../helpers/getProfileUrl';
+
 const Header: React.FC = () => {
     const [userInfo, setUserInfo] =  useState({ 
         id: 0,
@@ -45,7 +48,7 @@ const Header: React.FC = () => {
         <header className="user-header">
             <div className="user-header-content">
                 <Link to={`/profile/${getToken()}`}  className="name-box">
-                    <img src={("http://lorempixel.com/400/200/sports/"+userInfo?.id)} alt=""/>
+                    <img src={(getProfileUrl(parseInt(getToken()|| "0") || 0))} alt=""/>
                     <p>{userInfo?.name}</p>
                 </Link>
                 <div className="logoff-box" onClick={handleLogoff}>
