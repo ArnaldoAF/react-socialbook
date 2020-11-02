@@ -4,6 +4,7 @@ import './styles.css';
 import CommentInterface from '../../interfaces/CommentInterface';
 import commentIcons from '../../assets/images/icons/message-square.svg';
 import { Link } from 'react-router-dom';
+import getDateTime from '../../helpers/getDateTime';
 
 interface PostProps {
     comment:CommentInterface
@@ -14,12 +15,8 @@ const CommentBlock:React.FC<PostProps> = (props) => {
         comment
     } = props;
 
-    const timezone = new Date().getTimezoneOffset()/60;
-    const date = new Date(Date.parse(comment.created_at));
-    const day = date.getDay()+1;
-    const month = date.getMonth()+1;
-    const hour = date.getHours() - timezone;
-    const minutes = date.getMinutes() - timezone;
+    const {day,month,hour,minutes} = getDateTime(comment.created_at);
+    
 
     return (
         

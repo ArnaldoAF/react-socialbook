@@ -15,7 +15,7 @@ import searchIcon from '../../assets/images/icons/search.svg';
 const Menu: React.FC = () => {
 
     return (
-        <div className="container menu">
+        <div className=" menu">
             <Link to={`/create`}  className="menu-icon">
                 <img src={addIcon} alt=""/>
             </Link>
