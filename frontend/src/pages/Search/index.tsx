@@ -15,6 +15,8 @@ import searchIcon from '../../assets/images/icons/search.svg';
 
 import './styles.css';
 import { getToken } from '../../services/auth';
+import Loader from '../../components/Loader';
+import PostList from '../../components/PostList';
 
 
 
@@ -63,15 +65,16 @@ const Search:React.FC = () => {
                     value={searchText}
                     onChange={(e) => setSearchText(e.target.value)}
                 />
-                <Button type="submit" >
+                <Button type="submit" isLoading={isLoading}>
                     <img src={searchIcon} alt=""/>
                 </Button>
             </form>
-
-            {postList?.map((post:PostInterface) => {
-                return <PostBlock post={post}/>
-                
-            })}
+            {isLoading ? 
+                <Loader /> : (
+                    <>
+                        <PostList postList={postList || []} />
+                    </>
+                )}
         </div>
     );
 }

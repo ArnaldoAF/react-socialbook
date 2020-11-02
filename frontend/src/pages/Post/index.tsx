@@ -11,6 +11,7 @@ import api from '../../services/api';
 import sendIcon from '../../assets/images/icons/send.svg';
 import { getToken } from '../../services/auth';
 import './styles.css';
+import Loader from '../../components/Loader';
 
 interface PostParam {
     id: string;
@@ -26,32 +27,50 @@ const Post: React.FC<RouteComponentProps<PostParam>> = (props) => {
     });
     const [commentList, setCommentList] =  useState<CommentInterface[]>();
     const [commentText, setCommentText] =  useState("");
+    const [isLoading, setIsLoading] = useState(true);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [errorMessageComment, setErrorMessageComment] = useState("");
     const { match } = props;
     var id = match.params.id;
     
     
-
-    useEffect(  () => {
+    async function LoadPostComments() {
+        
+        setIsLoading(true);
+        setErrorMessage("");
         try{
-             api.get("/post/"+id).then((response) => {
-                console.log(response.data);
-                var post = response.data.data[0];
-                setPost(post);
+            await api.get("/post/"+id).then((response) => {
+               console.log(response.data);
+               var post = response.data.data[0];
+               setPost(post);
         })
         } catch(err) {
-            console.log("ERRO AO RECUPERAR / ME", err);
+            console.log("ERRO AO RECUPERAR POST", err);
+            setErrorMessage(err?.response?.data?.message);
         }
 
         try{
-            api.get("/post/"+id+"/comments").then((response) => {
-               console.log(response.data);
-               var comments = response.data.data;
-               setCommentList(comments);
-       })
-       } catch(err) {
-           console.log("ERRO AO RECUPERAR / ME", err);
-       }
+            setErrorMessageComment("");
+            await api.get("/post/"+id+"/comments").then((response) => {
+                console.log(response.data);
+                var comments = response.data.data;
+                setCommentList(comments);
+        })
+        } catch(err) {
+            console.log("ERRO AO RECUPERAR Comentario", err);
+            setErrorMessageComment(err?.response?.data?.message);
+        }
+        
+        setIsLoading(false);
+    }
+
+    useEffect(() => {
+        LoadPostComments();
     },[match]);
+
+    useEffect(() => {
+        LoadPostComments();
+    },[]);
 
     async function handleComment(e:FormEvent) {
         e.preventDefault();
@@ -62,31 +81,11 @@ const Post: React.FC<RouteComponentProps<PostParam>> = (props) => {
         }).then(response => {
             console.log(response.data);
             setCommentText("");
-            try{
-                api.get("/post/"+id).then((response) => {
-                   console.log(response.data);
-                   var post = response.data.data[0];
-                   setPost(post);
-           })
-           } catch(err) {
-               console.log("ERRO AO RECUPERAR / ME", err);
-           }
-            try{
-                api.get("/post/"+id+"/comments").then((response) => {
-                   console.log(response.data);
-                   var comments = response.data.data;
-                   setCommentList(comments);
-           })
-           } catch(err) {
-               console.log("ERRO AO RECUPERAR / ME", err);
-           }
-
-
+            LoadPostComments();
         }).catch(err => {
             console.log("erro Post",{err});
             console.log("erro Post", err.data);
             console.log("erro Post", err?.response?.data?.message);
-            //setErrorMessagePost(err?.response?.data?.message);
 
     });
         
@@ -95,23 +94,29 @@ const Post: React.FC<RouteComponentProps<PostParam>> = (props) => {
 
     return (
         <div className="container" >
-            <PostBlock post={post} />
-            <form className="post-comment-area" onSubmit={handleComment}>
-                <Input
-                    name="commentText"
-                    label=""
-                    placeholder="Comente"
-                    value={commentText}
-                    onChange={(e) => setCommentText(e.target.value)}
-                />
-                <Button type="submit" >
-                    <img src={sendIcon} alt=""/>
-                </Button>
-            </form>
+            {isLoading ? 
+            <Loader /> : (
+                <>
+                    <PostBlock post={post} />
+                    <form className="post-comment-area" onSubmit={handleComment}>
+                        <Input
+                            name="commentText"
+                            label=""
+                            placeholder="Comente"
+                            value={commentText}
+                            onChange={(e) => setCommentText(e.target.value)}
+                        />
+                        <Button type="submit" isLoading={isLoading}>
+                            <img src={sendIcon} alt=""/>
+                        </Button>
+                    </form>
+                    
+                    {commentList?.map(comment => { 
+                        return <CommentBlock comment={comment} />
+                    })}
+                </>
+            )}
             
-            {commentList?.map(comment => { 
-                return <CommentBlock comment={comment} />
-            })}
 
         </div> 
     )

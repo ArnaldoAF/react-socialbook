@@ -79,10 +79,8 @@ const Login:React.FC = () => {
                                     onChange={(e) => setLoginUser(e.target.value)}
                                 />
                                 <p>{errorMessageLogin}</p>
-                        <Button type="submit" disabled={isLoading}>
-                                <p>{isLoading ? 
-                                    "..."
-                                    : "LOGIN"}</p>
+                        <Button type="submit" isLoading={isLoading}>
+                                <p> "LOGIN"</p>
                         </Button>
                     </form>
                 </div>
@@ -95,10 +93,8 @@ const Login:React.FC = () => {
                                     onChange={(e) => setSingUpUser(e.target.value)}
                                 />
                                 <p>{errorMessageSingUp}</p>
-                        <Button type="submit" disabled={isLoading}>
-                            <p>{isLoading ? 
-                                    "..."
-                                    : "CADASTRE-SE"}</p>
+                        <Button type="submit" isLoading={isLoading}>
+                            <p>"CADASTRE-SE"</p>
                         </Button>
                     </form>
                 </div>

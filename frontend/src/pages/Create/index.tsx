@@ -49,7 +49,6 @@ const Create:React.FC = () => {
 
     return (
         <div className="container">
-            <p>Criar Post</p> 
             <form action="" id="post-form" onSubmit={handlePost}>
                 <TextArea
                     name="post"
@@ -58,14 +57,8 @@ const Create:React.FC = () => {
                     onChange={(e) => setPostText(e.target.value)}
                 />
                 <p>{errorMessagePost}</p>
-                <Button type="submit" disabled={isLoading}>
-                                {isLoading ? 
-                                        <img src={loadIcon} alt=""/>
-                                        : (
-                                        <>
-                                             Postar <img src={sendIcon} alt=""/>
-                                        </>
-                                        )}
+                <Button type="submit"  isLoading={isLoading}>
+                    Postar <img src={sendIcon} alt=""/>
                 </Button>
             </form>
         </div>
