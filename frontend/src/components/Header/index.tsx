@@ -7,6 +7,7 @@ import "./styles.css";
 import { logout,getToken } from '../../services/auth';
 import { useHistory, Link } from 'react-router-dom';
 import { Power } from 'react-feather';
+import powerIcon from '../../assets/images/icons/power.svg';
 
 const Header: React.FC = () => {
     const [userInfo, setUserInfo] =  useState({ 
@@ -48,7 +49,7 @@ const Header: React.FC = () => {
                     <p>{userInfo?.name}</p>
                 </Link>
                 <div className="logoff-box" onClick={handleLogoff}>
-                    <Power color="black" size={40}/>
+                <img src={powerIcon} alt=""/>
                 </div>
             </div>
             
