@@ -95,7 +95,7 @@ export default class PostController {
                 })
             });
 
-            console.log("✅ Sucesso - ");
+            console.log("✅ Sucesso");
             //console.log(postsWithInfo);
     
             

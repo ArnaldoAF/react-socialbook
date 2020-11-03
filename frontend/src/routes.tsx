@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {BrowserRouter, Route, Redirect, RouteProps, Switch} from 'react-router-dom';
 
 import Login from './pages/Login';
@@ -13,7 +13,6 @@ import Post from './pages/Post';
 import Search from './pages/Search';
 
 interface RoutePropsCustom extends RouteProps {
-    // tslint:disable-next-line:no-any
     component: any;
 }
 

@@ -48,7 +48,6 @@ export default class UserController {
             
             var countPosts = await db('posts').count('* as posts')
                                 .where({user_id: id});
-                                console.log(countPosts);
 
             var countComments = await db('comments').count('* as comments')
                                     .where({user_id: id});

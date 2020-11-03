@@ -1,11 +1,6 @@
-import React, { useEffect, useState } from 'react';
-
-import api from '../../services/api';
+import React from 'react';
 
 import "./styles.css";
-
-import { logout,getToken } from '../../services/auth';
-
 
 import loadIcon from '../../assets/images/icons/loader.svg';
 

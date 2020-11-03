@@ -1,11 +1,10 @@
-import React, {InputHTMLAttributes, TextareaHTMLAttributes} from 'react';
+import React, {TextareaHTMLAttributes} from 'react';
 import './styles.css';
 
 interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
     label: string;
     name: string;
 }
-
 
 const TextArea: React.FC<TextAreaProps> = (props, children) => {
     const {

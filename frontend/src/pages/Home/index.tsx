@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import {useHistory} from 'react-router-dom';
-import PostBlock from '../../components/PostBlock';
 
-import Loader from '../../components/Loader';
-import PostInterface from '../../interfaces/PostInterface';
-import UserInterface from '../../interfaces/UserInterface';
-
-import loadIcon from '../../assets/images/icons/loader.svg';
 import api from '../../services/api';
 
-
-
 import './styles.css';
+
+import PostInterface from '../../interfaces/PostInterface';
+
+import Loader from '../../components/Loader';
 import PostList from '../../components/PostList';
-
-
 
 const Login:React.FC = () => {
     const [postList, SetPostList] = useState<PostInterface[]>();

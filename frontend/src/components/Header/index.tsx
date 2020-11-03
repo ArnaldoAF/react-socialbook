@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory, Link } from 'react-router-dom';
 
 import api from '../../services/api';
 
 import "./styles.css";
-
-import { logout,getToken } from '../../services/auth';
-import { useHistory, Link } from 'react-router-dom';
-import { Power } from 'react-feather';
 import powerIcon from '../../assets/images/icons/power.svg';
 
+import { logout,getToken } from '../../services/auth';
 
 import getProfileUrl from '../../helpers/getProfileUrl';
 
@@ -21,23 +19,23 @@ const Header: React.FC = () => {
     });
     const history = useHistory();
 
-    useEffect(  () => {
-        
+    useEffect(() => {
         try{
              api.get("/user/"+getToken()).then((response) => {
                 console.log(response.data);
                 var user = response.data.data;
                 setUserInfo(user);
-            
-        }).catch((response) => {
-            console.log("catch", response);
-            handleLogoff();
-        })
+            }).catch((response) => {
+                console.log("catch", response);
+                logout(); 
+                history.push("/");
+            })
         } catch(err) {
             console.log("ERRO AO RECUPERAR / ME", err);
-            handleLogoff();
+            logout(); 
+            history.push("/");
         }
-    },[]);
+    },[history]);
 
     function handleLogoff() {
         logout(); 

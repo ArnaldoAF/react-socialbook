@@ -1,27 +1,25 @@
-import React, { FormEvent, useState } from 'react';
+import React, { useState } from 'react';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+
+import { getToken } from '../../services/auth';
+import api from '../../services/api';
 
 import './styles.css';
-import PostInterface from '../../interfaces/PostInterface';
 import commentIcons from '../../assets/images/icons/message-square.svg';
-import { Link, useHistory, useLocation } from 'react-router-dom';
-import getDateTime from '../../helpers/getDateTime';
-import { getToken } from '../../services/auth';
-
 import trashIcon from '../../assets/images/icons/trash.svg';
 import loadIcon from '../../assets/images/icons/loader.svg';
 
+import PostInterface from '../../interfaces/PostInterface';
 
+import getDateTime from '../../helpers/getDateTime';
 import getProfileUrl from '../../helpers/getProfileUrl';
-import api from '../../services/api';
 
 interface PostProps {
     post:PostInterface
 }   
 
 const PostBlock:React.FC<PostProps> = (props) => {
-    const {
-        post
-    } = props;
+    const { post } = props;
 
     const {day,month,hour,minutes} = getDateTime(post.created_at);
     const location = useLocation();
@@ -36,7 +34,7 @@ const PostBlock:React.FC<PostProps> = (props) => {
             await api.delete("/post/"+post?.id).then((response) => {
                console.log(response.data);
                setIsInvisible(true);
-               if(location.pathname != "/home" && location.pathname != "/search") {
+               if(location.pathname !== "/home" && location.pathname !== "/search") {
                     history.push("/home");
                }
         })} catch(err) {
@@ -54,7 +52,7 @@ const PostBlock:React.FC<PostProps> = (props) => {
                         <p><img src={(getProfileUrl(post.user?.id || 0))} alt=""/> {post.user?.name}</p>
                     </Link>
                     <p> 
-                         {post.user?.id == getToken()?.toString() && (<img src={isLoading ? loadIcon :trashIcon } className="trash" onClick={deletePost} alt=""/>) }
+                         {post.user?.id.toString() === getToken() && (<img src={isLoading ? loadIcon :trashIcon } className="trash" onClick={deletePost} alt=""/>) }
                         {hour}:{minutes} {day}/{month}  
                     </p>
 

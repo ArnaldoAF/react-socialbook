@@ -9,10 +9,7 @@ interface PostListProps {
 
 
 const PostList: React.FC<PostListProps> = (props) => {
-    const {
-        postList
-    } = props;
-
+    const { postList } = props;
 
     return (
         <>

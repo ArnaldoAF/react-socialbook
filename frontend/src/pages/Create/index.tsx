@@ -1,20 +1,14 @@
-import React, { FormEvent, useEffect, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import {useHistory} from 'react-router-dom';
-import Button from '../../components/Button';
-import Input from '../../components/Input';
-import PostBlock from '../../components/PostBlock';
-import TextArea from '../../components/TextArea';
-import PostInterface from '../../interfaces/PostInterface';
-import UserInterface from '../../interfaces/UserInterface';
-import api from '../../services/api';
-import sendIcon from '../../assets/images/icons/send.svg';
-import loadIcon from '../../assets/images/icons/loader.svg';
 
+import { getToken } from '../../services/auth';
+import api from '../../services/api';
 
 import './styles.css';
-import { getToken } from '../../services/auth';
+import sendIcon from '../../assets/images/icons/send.svg';
 
-
+import Button from '../../components/Button';
+import TextArea from '../../components/TextArea';
 
 const Create:React.FC = () => {
     

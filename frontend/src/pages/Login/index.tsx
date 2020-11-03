@@ -1,12 +1,14 @@
 import React, { FormEvent, useState } from 'react';
 import {useHistory} from 'react-router-dom';
 
-import Button from '../../components/Button';
-import Input from '../../components/Input';
 import api from '../../services/api';
 import { login } from '../../services/auth';
 
 import './styles.css';
+
+import Button from '../../components/Button';
+import Input from '../../components/Input';
+
 
 const Login:React.FC = () => {
     const [loginUser, setLoginUser] = useState("");
@@ -77,9 +79,10 @@ const Login:React.FC = () => {
                                     label="Login"
                                     value={loginUser}
                                     onChange={(e) => setLoginUser(e.target.value)}
+                                    className="login-input"
                                 />
                                 <p>{errorMessageLogin}</p>
-                        <Button type="submit" isLoading={isLoading}>
+                        <Button type="submit" isLoading={isLoading} >
                                 <p> "LOGIN"</p>
                         </Button>
                     </form>
@@ -91,9 +94,10 @@ const Login:React.FC = () => {
                                     label="Cadastre-se"
                                     value={singUpUser}
                                     onChange={(e) => setSingUpUser(e.target.value)}
+                                    className="login-input"
                                 />
                                 <p>{errorMessageSingUp}</p>
-                        <Button type="submit" isLoading={isLoading}>
+                        <Button type="submit" isLoading={isLoading} >
                             <p>"CADASTRE-SE"</p>
                         </Button>
                     </form>

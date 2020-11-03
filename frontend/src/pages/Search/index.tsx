@@ -1,23 +1,16 @@
-import React, { FormEvent, useEffect, useState } from 'react';
-import {useHistory} from 'react-router-dom';
-import Button from '../../components/Button';
-import Input from '../../components/Input';
-import PostBlock from '../../components/PostBlock';
-import TextArea from '../../components/TextArea';
-import PostInterface from '../../interfaces/PostInterface';
-import UserInterface from '../../interfaces/UserInterface';
+import React, { FormEvent, useState } from 'react';
+
 import api from '../../services/api';
-import sendIcon from '../../assets/images/icons/send.svg';
-import loadIcon from '../../assets/images/icons/loader.svg';
-
-import searchIcon from '../../assets/images/icons/search.svg';
-
 
 import './styles.css';
-import { getToken } from '../../services/auth';
+import searchIcon from '../../assets/images/icons/search.svg';
+
+import Button from '../../components/Button';
+import Input from '../../components/Input';
 import Loader from '../../components/Loader';
 import PostList from '../../components/PostList';
 
+import PostInterface from '../../interfaces/PostInterface';
 
 
 const Search:React.FC = () => {
@@ -25,15 +18,14 @@ const Search:React.FC = () => {
     const [searchText, setSearchText] = useState("");
     const [postList, SetPostList] = useState<PostInterface[]>();
     const [isLoading, setIsLoading] = useState(false);
-    const [errorMessagePost, setErrorMessagePost] = useState("");
-    const history = useHistory();
+    const [errorMessage, setErrorMessage] = useState("");
 
     async function handleSearch(e:FormEvent) {
         e.preventDefault();
 
         setIsLoading(true);
 
-       
+        setErrorMessage("");
         await api.get("/post", {
             params: {
                 message_text: searchText
@@ -47,7 +39,7 @@ const Search:React.FC = () => {
             console.log("erro Post",{err});
             console.log("erro Post", err.data);
             console.log("erro Post", err?.response?.data?.message);
-            setErrorMessagePost(err?.response?.data?.message);
+            setErrorMessage(err?.response?.data?.message);
 
         });
 
@@ -72,6 +64,7 @@ const Search:React.FC = () => {
             {isLoading ? 
                 <Loader /> : (
                     <>
+                        <p>{errorMessage}</p>
                         <PostList postList={postList || []} />
                     </>
                 )}

@@ -1,33 +1,26 @@
-import React, { FormEvent, useState } from 'react';
+import React, { useState } from 'react';
+import { Link,  } from 'react-router-dom';
+
+import CommentInterface from '../../interfaces/CommentInterface';
 
 import './styles.css';
-import CommentInterface from '../../interfaces/CommentInterface';
-import commentIcons from '../../assets/images/icons/message-square.svg';
-import { Link, useHistory, useLocation } from 'react-router-dom';
-import getDateTime from '../../helpers/getDateTime';
-import { getToken } from '../../services/auth';
-
 import trashIcon from '../../assets/images/icons/trash.svg';
-
 import loadIcon from '../../assets/images/icons/loader.svg';
 
-
-import getProfileUrl from '../../helpers/getProfileUrl';
 import api from '../../services/api';
+import { getToken } from '../../services/auth';
+
+import getDateTime from '../../helpers/getDateTime';
+import getProfileUrl from '../../helpers/getProfileUrl';
 
 interface PostProps {
     comment:CommentInterface
 }   
 
 const CommentBlock:React.FC<PostProps> = (props) => {
-    const {
-        comment
-    } = props;
+    const { comment } = props;
 
     const {day,month,hour,minutes} = getDateTime(comment.created_at);
-
-    const location = useLocation();
-    const history = useHistory();
     const [isInvisible, setIsInvisible] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     
@@ -40,7 +33,6 @@ const CommentBlock:React.FC<PostProps> = (props) => {
                
         })} catch(err) {
             console.log("ERRO AO RECUPERAR COMMENT", err);
-            //setErrorMessage(err?.response?.data?.message);
         }
         setIsLoading(false);
     }
@@ -52,7 +44,7 @@ const CommentBlock:React.FC<PostProps> = (props) => {
                         <p><img src={(getProfileUrl(comment.user?.id || 0))} alt=""/> {comment.user?.name}</p>
                     </Link>
                     <p>
-                        {comment.user?.id?.toString() == getToken() && (<img src={isLoading ? loadIcon :trashIcon } className="trash" onClick={deleteComment} alt=""/>) }
+                        {comment.user?.id?.toString() === getToken() && (<img src={isLoading ? loadIcon :trashIcon } className="trash" onClick={deleteComment} alt=""/>) }
                         {hour}:{minutes} {day}/{month}  
                     </p>
 

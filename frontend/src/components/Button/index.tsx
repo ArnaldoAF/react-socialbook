@@ -1,9 +1,6 @@
-import React, { ReactHTML, ButtonHTMLAttributes } from 'react';
+import React, { ButtonHTMLAttributes } from 'react';
 
 import './styles.css'; 
-import { Link, LinkProps } from 'react-router-dom';
-
-
 import loadIcon from '../../assets/images/icons/loader.svg';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -23,15 +20,13 @@ const Button: React.FC<ButtonProps> = (props) => {
         
             <button className="button" {...rest} disabled={isLoading}>
             {isLoading ? 
-                    <img src={loadIcon} alt=""/>
-                    : (
+                <img src={loadIcon} alt=""/>
+                : (
                 <>
                     {props.children}
                 </>
             )}
             </button>
-        
-        
         </>
     )
 }

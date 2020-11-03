@@ -1,12 +1,7 @@
-import React, { useEffect, useState } from 'react';
-
-import api from '../../services/api';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 import "./styles.css";
-
-import { logout,getToken } from '../../services/auth';
-import { useHistory, Link } from 'react-router-dom';
-import { Power } from 'react-feather';
 
 import addIcon from '../../assets/images/icons/plus-square.svg';
 import homeIcon from '../../assets/images/icons/home.svg';
