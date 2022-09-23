@@ -69,11 +69,11 @@ const Login:React.FC = () => {
     return (
         <div id="login-container">
             <div id="logo-header">
-                <p>@tech_desafio</p>
+                <p>React SocialBookk</p>
             </div>
             <div id="login-singup-area">
                 <div id="login-area">
-                    <form action="" id="login-form" onSubmit={handleLogin}>
+                    <form action="" id="logisn-form" onSubmit={handleLogin}>
                         <Input
                                     name="login"
                                     label="Login"
